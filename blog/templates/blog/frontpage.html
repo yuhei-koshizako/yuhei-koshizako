@@ -6,4 +6,19 @@
     <a href="{% url 'post_detail' post.slug %}">もっと読む</a>
     <hr/>
 </div>
+<from action="." method="POST">
+    <diV>
+        <label for="name">名前</label>
+        <input type="text" id="email" name="name">
+    </div>
+    <div>
+        <label for="email">メールアドレス</label>
+        <input type="mail" id="email" name="email"> 
+    </div>
+    <div>
+        <label for="masesage">内容</label>
+        <textarea type="email" id="email" name="email"></textarea>
+    </div>
+    <button class="button is-danger">送信</button>
+</form>
 {% endfor %} {%endblock%}

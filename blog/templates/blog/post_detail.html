@@ -1,7 +1,7 @@
 {% extends "blog/base.html" %} {% block content %}
 
     <h1 class="title">{{post.title}}</h2>
-    <small>posted at {{post.posted_date}}</small>
+    <small>投稿日時 {{post.posted_date}}</small>
     <p>{{post.intro}}</p>
     <p>{{post.body}}</p>
     <hr/>
@@ -32,7 +32,7 @@
     <!-- コメント投稿エリア -->
     <h1 class="subtitle">コメントを追加</h1>
 
-    <form action="." methon="post">
+    <form action="." method="POST">
         {% csrf_token %}
         {{form.as_p}}
         <div class="field">

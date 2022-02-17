@@ -10,10 +10,10 @@ def frontpage(request):
 
 def post_deteil(request, slug):
     post = Post.objects.get(slug=slug)
-
+    # print(f'request.method: {request.method}')
     if request.method == "POST":
         form = CommentForm(request.POST)
-
+        #print(f'form: {form}')
         if form.is_valid():
             comment = form.save(commit=False)
             comment.post = post
