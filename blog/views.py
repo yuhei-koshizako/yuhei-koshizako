@@ -1,14 +1,20 @@
 from http.client import HTTPResponse
 from django.shortcuts import redirect, render
-
-from blog.forms import CommentForm
+from blog.forms import CommentForm, PostForm
 from .models import Post
 
 def frontpage(request):
+    if request.method == "POST":
+        form =PostForm(request.POST)
+        if form.is_valid():
+            form.save()
+            form = PostForm()
+    else:
+        form = PostForm()
     posts = Post.objects.all()
-    return render(request,"blog/frontpage.html", {"posts": posts})
+    return render(request,"blog/frontpage.html", {'posts':posts ,'form': form})
 
-def post_deteil(request, slug):
+def post_detail(request, slug):
     post = Post.objects.get(slug=slug)
     # print(f'request.method: {request.method}')
     if request.method == "POST":

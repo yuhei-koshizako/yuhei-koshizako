@@ -1,24 +1,22 @@
-{% extends "blog/base.html" %} {% block content %} {% for post in posts %}
-<div class="post block">
-    <h2 class="subtitle">{{post.title}}</h2>
-    <small>posted at {{post.posted_date}}</small>
-    <p>{{post.intro}}</p>
-    <a href="{% url 'post_detail' post.slug %}">もっと読む</a>
-    <hr/>
-</div>
-<from action="." method="POST">
-    <diV>
-        <label for="name">名前</label>
-        <input type="text" id="email" name="name">
+{% extends "blog/base.html" %} {% block content %} 
+{% for post in posts %}
+    <div class="post block">
+        <h2 class="subtitle">{{post.title}}</h2>
+        <small>投稿日時 {{post.posted_date}}</small>
+        <p>{{post.intro}}</p>
+        <a href="{% url 'post_detail' post.slug %}">もっと読む</a>
+        <hr/>
     </div>
-    <div>
-        <label for="email">メールアドレス</label>
-        <input type="mail" id="email" name="email"> 
+{% endfor %}
+<h1 class="title">投稿</h1>
+
+<form action="."method="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+    <div class="field">
+        <div class="control">
+            <button class="button is-danger">投稿をする</button>
+        </div>
     </div>
-    <div>
-        <label for="masesage">内容</label>
-        <textarea type="email" id="email" name="email"></textarea>
-    </div>
-    <button class="button is-danger">送信</button>
 </form>
-{% endfor %} {%endblock%}
+{%endblock%}
